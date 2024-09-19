@@ -1,0 +1,34 @@
+body{
+  background-color:#22b7fc ;
+  font-family: 'Roboto';
+  text-align: center;
+}
+
+button{
+  padding: 10px;
+  margin:10px;
+  border-radius: 20px;
+  border:none;
+}
+
+.hidden{
+  display:none;
+}
+
+.shown{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap:5px;
+}
+
+img{
+  max-width:300px
+}
+
+input{
+  border-radius: 20px;
+  border:none;
+  outline:none;
+}

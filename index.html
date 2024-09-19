@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country Quiz</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <h1>Welcome to Country Quiz!</h1>
+  <h2>Choose Easy, Medium, or Hard, and guess which country the outline represents.</h2>
+  <h3 id="score">Your score so far: 0</h3>
+  <div id="gameboard">
+    <button class="difficulty">Easy</button>
+    <button class="difficulty">Medium</button>
+    <button class="difficulty">Hard</button>
+  </div>
+  <div id="question" class="hidden">
+    <p>What country is this?</p>
+    <img src="">
+    <input type="text">
+    <button id="backBtn">Back</button>
+    <button id="another">Another</button>
+  </div>
+  <div id="correct" class="hidden">
+    <h3>You got it!</h3>
+  </div>
+  <div id="incorrect" class="hidden">
+    <h3>ooh, try again!</h3>
+  </div>
+</body>
+</html>
