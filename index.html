@@ -10,7 +10,8 @@
 <body>
   <h1>Welcome to Country Quiz!</h1>
   <h2>Choose Easy, Medium, or Hard, and guess which country the outline represents.</h2>
-  <h3 id="score">Your score so far: 0</h3>
+  <h3 id="winLose">You win if you get 20/23 points, and lose if more than 3 wrong</h3>
+  <h4 id="score">Your score so far: 0</h4>
   <div id="gameboard">
     <button class="difficulty">Easy</button>
     <button class="difficulty">Medium</button>
@@ -28,6 +29,14 @@
   </div>
   <div id="incorrect" class="hidden">
     <h3>ooh, try again!</h3>
+  </div>
+  <div id="done" class="hidden">
+    <h3>Done with this list, try another!</h3>
+  </div>
+
+  <div id="completed">
+    <h2>Completed Countries:</h2>
+    <div class="countries-completed"></div>
   </div>
 </body>
 </html>

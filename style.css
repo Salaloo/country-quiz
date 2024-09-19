@@ -1,5 +1,5 @@
 body{
-  background-color:#22b7fc ;
+  background-color:white ;
   font-family: 'Roboto';
   text-align: center;
 }
@@ -29,6 +29,15 @@ img{
 
 input{
   border-radius: 20px;
-  border:none;
-  outline:none;
+  border:1px solid black;
+  border-color: black;
+}
+
+#completed{
+  text-align: left;
+}
+
+.countries-completed {
+  display:flex;
+  flex-wrap: wrap;
 }

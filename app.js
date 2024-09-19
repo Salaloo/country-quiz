@@ -6,11 +6,17 @@ const correct = document.querySelector('#correct')
 const input = document.querySelector('input')
 const image = document.querySelector('img')
 const incorrect = document.querySelector('#incorrect')
+const done = document.querySelector("#done")
 const another = document.querySelector('#another')
 const scoreTag = document.querySelector('#score')
+const completedContainer = document.querySelector(".countries-completed")
+const winLose = document.querySelector('#winLose')
 
 let score = 0
 let lvl;
+const completedCountries = []
+let currentQuestion;
+let wrongs = 0;
 
 let easyQuestions = [
   {
@@ -27,8 +33,12 @@ let easyQuestions = [
   },
   {
     name: "america",
-    image: "./imgs/easy/usa.png",
+    image: "./imgs/easy/usa.jpg",
   },
+  {
+    name: "mexico",
+    image: "./imgs/easy/mexico.jpg",
+  }
 ];
 let mediumQuestions = [
   {
@@ -106,12 +116,8 @@ let hardQuestions = [
     image: "./imgs/Hard/south korea.jpg",
   }
 ]
-let solved = [
 
-]
-let unsolved = [
 
-]
 for (let i = 0; i < difficulty.length; i++) {
   difficulty[i].addEventListener("click", (e) => {
     gameBoard.classList.toggle("hidden");
@@ -123,17 +129,32 @@ for (let i = 0; i < difficulty.length; i++) {
 function displayQuestion(level) {
   lvl=level
   if (level === "Easy") {
+    if (!easyQuestions.length) {
+      done.className = "shown"
+      return
+    }
     let randomIdx = Math.floor(easyQuestions.length * Math.random())
-    image.src = easyQuestions[randomIdx].image;
-    image.alt= easyQuestions[randomIdx].name
+    currentQuestion = easyQuestions.splice(randomIdx, 1)[0]
+    image.src = currentQuestion.image;
+    image.alt= currentQuestion.name
   } else if (level === "Medium") {
+    if (!mediumQuestions.length) {
+      done.className = "shown"
+      return
+    }
     let randomIdx = Math.floor(mediumQuestions.length * Math.random())
-    image.src = mediumQuestions[randomIdx].image;
-    image.alt= mediumQuestions[randomIdx].name
+    currentQuestion = mediumQuestions.splice(randomIdx, 1)[0]
+    image.src = currentQuestion.image;
+    image.alt= currentQuestion.name
   } else {
+    if (!hardQuestions.length) {
+      done.className = "shown"
+      return
+    }
     let randomIdx = Math.floor(hardQuestions.length * Math.random())
-    image.src = hardQuestions[randomIdx].image;
-    image.alt= hardQuestions[randomIdx].name
+    currentQuestion = hardQuestions.splice(randomIdx, 1)[0]
+    image.src = currentQuestion.image;
+    image.alt= currentQuestion.name
   }
   questionDiv.className="shown";
 }
@@ -145,6 +166,7 @@ backButton.addEventListener('click', () => {
   questionDiv.classList.toggle("shown");
   correct.className='hidden'
   incorrect.className='hidden'
+  done.className = 'hidden'
 })
 
 another.addEventListener('click', () => {
@@ -158,15 +180,35 @@ input.addEventListener('keypress', (e) => {
       correct.className='shown'
       score++
       scoreTag.innerHTML = `your score so far: ${score}`
+      if(score > 19){
+        winLose.innerText='You win!!!'
+      }
+      completedCountries.push(currentQuestion)
+      displayCompleted()
       displayQuestion(lvl)
     }
     else{
       correct.className = 'hidden'
       incorrect.className='shown'
       score--
+      wrongs++
+      if(wrongs > 3){
+        winLose.innerText='You lose'
+      }
       scoreTag.innerHTML = `your score so far: ${score}`
     }
     input.value = ''
   }
 })
 
+
+function displayCompleted(){
+  let countryHTML = `
+    <div class="completed-items">
+      <img src="${currentQuestion.image}" alt="${currentQuestion.name}">
+      <p>${currentQuestion.name}</p>
+    </div>
+  `
+
+  completedContainer.insertAdjacentHTML("beforeend", countryHTML)
+}
